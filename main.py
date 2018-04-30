@@ -6,12 +6,15 @@ from mininet.cli import CLI
 
 class ftt(Topo):
     def build(self, n=4):
-        q = n * n / 4
+        # q = n * n / 4
         csw = []
+        i = 0
         
-        for x in range(q):
+        for x in range(n/2):
             # Build core switches
-            csw.append(self.addSwitch('cs{}'.format(x), dpid='0000000000{:02x}{:04x}'.format(n,x)))
+            for y in range(n/2):
+                csw.append(self.addSwitch('cs{}'.format(i), dpid='{}{:02x}{:02x}{:02x}'.format((5*'00'), n, x+1, y+1)))
+                i += 1
         
         for x in range(n):
             # Build pods
