@@ -3,8 +3,8 @@ from mininet.net import Mininet
 from mininet.util import irange, dumpNodeConnections
 from mininet.log import setLogLevel
 
-class ftt(Topo):
-    def build(self, n=4):
+class simple(Topo):
+    def build(self, n=2):
         
         sw = self.addSwitch('s1', dpid = '0000000000000001')
         
@@ -14,4 +14,4 @@ class ftt(Topo):
         self.addLink(sw, host1, port1=1, port2=1)
         self.addLink(sw, host2, port1=2, port2=1)
    
-topos = { 'ftt': ( lambda: ftt() ) }
+topos = { 'simple': ( lambda: simple() ) }
