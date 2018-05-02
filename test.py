@@ -6,7 +6,7 @@ from mininet.log import setLogLevel
 class simple(Topo):
     def build(self, n=2):
         
-        sw = self.addSwitch('s1', dpid = '0000000000000001')
+        sw = self.addSwitch('s1', dpid = '000000000030201')
         
         host1 = self.addHost('h1', ip = '10.0.0.2')
         host2 = self.addHost('h2', ip = '10.0.0.3')
