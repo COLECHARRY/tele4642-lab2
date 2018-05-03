@@ -4,7 +4,7 @@
 
 Mininet Fat Tree Topology defined in main.py as ftt()
 
-Init either by running ```python main.py``` or ```sudo mn --custom main.py --topo ftt --controller=remote --arp```
+Init either by running ```python ftt.py``` or ```sudo mn --custom ftt.py --topo ftt --controller=remote --arp```
 
 
 #### Ryu Application
@@ -21,4 +21,4 @@ Test files are basic code setups used for testing API interactions
 
 routemanager.py is a REST API implementation of the Fat Tree routing table (partially incomplete)
 
-Run with ```ryu-manager ryu.app.ofctl_rest --verbose``` and ```python routemanager.py```
+Run with ```ryu-manager ryu.app.ofctl_rest --verbose``` and ```python routemanager_rest.py```
