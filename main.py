@@ -47,6 +47,7 @@ def buildftt():
     net = Mininet(tp)
     net.start()
     dumpNodeConnections(net.hosts)
+    net.staticArp()
     CLI(net)
     #net.pingAll()
     net.stop()

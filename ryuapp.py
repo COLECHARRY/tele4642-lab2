@@ -68,7 +68,7 @@ class L2Switch(app_manager.RyuApp):
         # print 'spod: ' + str(spod)
         swnum = int(dpid_hex[-2:-4:-1], 16)
         # print 'swnum: ' + str(swnum)
-        crnum = int(dpid_hex[-2:], 16)
+        # crnum = int(dpid_hex[-2:], 16)
         # print 'crnum: ' + str(crnum)
 
         match = dp.ofproto_parser.OFPMatch()
@@ -77,7 +77,7 @@ class L2Switch(app_manager.RyuApp):
         self.add_flow(dp, 0, match, actions)
 
         # Core Switch Tables
-        if crnum == k:
+        if spod == k:
             # Do something
             pri = 1
             for i in range(k):
@@ -86,7 +86,7 @@ class L2Switch(app_manager.RyuApp):
                 self.add_flow_ip(dp, ip, pri, port)
 
         # Aggregation Switch Tables
-        elif crnum < k and swnum >= k/2:
+        elif spod < k and swnum >= k/2:
             pri = 1
             for q in range(k / 2):
                 # Build suffix table entries
@@ -102,7 +102,7 @@ class L2Switch(app_manager.RyuApp):
                 self.add_flow_ip(dp, ip, pri, prep)
 
         # Edge Switch Tables
-        elif crnum < k and swnum < k/2:
+        elif spod < k and swnum < k/2:
             pri = 10
             for i in range(k/2):
                 # Build host route entries
@@ -126,4 +126,5 @@ class L2Switch(app_manager.RyuApp):
     def _packet_in_handler(self, ev):
         datapath = ev.msg.datapath
         dpid = "{:06x}".format(datapath.id)
-        print('{} is receiving packets'.format(dpid))
+        # print('{} is receiving packets'.format(dpid))
+        # print packet.Packet(array.array('B', ev.msg.data))
